@@ -12,3 +12,4 @@ export default defineConfig({
 // коли деплой на gh-pages,
 // "scripts": { "deploy": "gh-pages -d dist",
 // це для package.json файла
+// для деплоя на vercel видалити файл .github (дивись темплейт)
