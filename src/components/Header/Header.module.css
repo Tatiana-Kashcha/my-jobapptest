@@ -1,0 +1,54 @@
+.header {
+    padding: 24px 0;
+    border-bottom: 1px solid  rgba(128, 128, 128, 0.55);
+}
+
+.container {
+    padding: 0 100px;
+    margin: 0 auto;
+    width: 1240px;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.logo {
+    font-weight: 700;
+    font-size: 32px;
+    color: #0F172A;
+}
+
+.buttons_group {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav {
+    display: flex;
+    gap: 16px;
+}
+
+.button_nav {
+    font-size: 16px;
+    font-weight: 500;
+    font-family: Roboto, sans-serif;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+
+    padding: 12px 8px;
+    background-color: transparent;
+}
+
+.button_sign_in {
+    font-size: 16px;
+    font-weight: 500;
+    font-family: Roboto, sans-serif;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+
+    padding: 12px 28px;
+    border-radius: 8px;
+    background-color:  rgba(128, 128, 128, 0.55);
+    color:  #FFFFFF;
+}

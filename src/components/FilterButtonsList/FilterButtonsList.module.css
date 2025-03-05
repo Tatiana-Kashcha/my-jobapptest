@@ -1,0 +1,46 @@
+.title {
+    font-size: 34px;
+    margin-bottom: 40px;
+}
+
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.list_items {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button {
+    font-size: 16px;
+    font-weight: 500;
+    font-family: Roboto, sans-serif;
+    line-height: 1.1;
+
+    height: 37px;
+    min-width: 77px;
+    padding: 0 10px;
+    border-radius: 8px;
+    cursor: pointer; 
+}
+
+.no_selected {
+    color: rgba(128, 128, 128, 0.55);
+    background-color: rgba(255, 255, 255, 1); 
+}
+
+.no_selected:hover {
+    background-color: #ccc; 
+    color: #ffffff;
+}
+
+
+.selected {
+    color: #ffffff;
+    background-color: #02BFF3;
+   
+}

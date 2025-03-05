@@ -1,0 +1,26 @@
+.list {
+    display: flex;
+    margin-bottom: 60px;
+    border: 1px solid #CBD5E1;
+    border-radius: 8px;
+}
+
+.list_items {
+    width: 207px;
+}
+
+.list_items:not(:last-child) {
+    border-right: 1px solid #CBD5E1;
+}
+
+.button {
+    font-size: 16px;
+    font-weight: 500;
+    font-family: Roboto, sans-serif;
+    line-height: 1.1;
+    text-decoration: underline;
+
+    padding: 15px 0;
+    width: 100%;
+    background-color: transparent;
+}

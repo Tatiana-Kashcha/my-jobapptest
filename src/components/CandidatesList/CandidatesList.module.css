@@ -1,0 +1,32 @@
+.candidates_div {
+    padding: 40px 20px;
+    background-color: rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    width: 756px;
+    margin-right: 100px;
+}
+
+.candidates_div_title {
+    display:flex
+}
+
+.title {
+    font-weight: 800;
+    font-size: 50px;
+
+    margin-bottom: 60px;
+}
+
+.quantyti {
+    font-weight: 800;
+    font-size: 26px;
+
+    margin-left: 20px;
+    color: #999999;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}

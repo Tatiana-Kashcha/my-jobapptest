@@ -1,0 +1,22 @@
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.list_items {
+    height: 37px;
+    min-width: 77px;
+    padding: 0 10px;
+    background-color: #ECECEC;
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.skills {
+    color: #02BFF3;;
+}
