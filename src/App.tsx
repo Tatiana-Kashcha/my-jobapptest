@@ -7,6 +7,9 @@ import { CandidatesList } from "./components/CandidatesList/CandidatesList";
 import { FilterBox } from "./components/FilterBox/FilterBox";
 import "./App.css";
 
+const apiKeyFirebase = import.meta.env.VITE_FIREBASE_API_KEY;
+console.log(apiKeyFirebase);
+
 function App() {
   return (
     <BrowserRouter>
