@@ -25,7 +25,7 @@ async function importData(collectionName, data) {
 }
 
 // Запускаємо імпорт
-importData("candidates", jsonData)
+importData("candidates2", jsonData)
   .then(() => process.exit())
   .catch((error) => {
     console.error("Помилка імпорту:", error);
@@ -33,3 +33,7 @@ importData("candidates", jsonData)
   });
 
 // запускаємо імпорт командою в терміналі: node importData.js
+// якщо повторно запустити імпорт, то дані в колекцію додадуться з файла, а не перезапишуть колекцію
+
+// якщо колекція з таким ім'ям не існує, то її буде створено
+// importData("your-name-colelection", jsonData)
