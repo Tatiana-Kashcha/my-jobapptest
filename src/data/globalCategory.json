@@ -1,0 +1,8 @@
+[
+  { "id": "1", "name": "JavaScript / Frontend" },
+  { "id": "2", "name": "Python" },
+  { "id": "3", "name": "Java" },
+  { "id": "4", "name": "C / C++" },
+  { "id": "5", "name": "QA Manual" },
+  { "id": "6", "name": "Project Manager" }
+]

@@ -1,10 +1,13 @@
 import admin from "./src/utils/firebaseAdmin.js"; // Підключаємо Firestore Admin SDK
 import fs from "fs";
 
+const filePath = "./src/data/salary.json";
+// candidates.json, filterCategory.json, globalCategory.json, skills.json, salary.json
+const collectionName = "salary";
+// candidates, filter_category, global_category, skills, salary
+
 // Читаємо JSON-файл із даними
-const jsonData = JSON.parse(
-  fs.readFileSync("./src/data/candidates.json", "utf8")
-);
+const jsonData = JSON.parse(fs.readFileSync(filePath, "utf8"));
 
 // Отримуємо посилання на Firestore
 const db = admin.firestore();
@@ -25,7 +28,7 @@ async function importData(collectionName, data) {
 }
 
 // Запускаємо імпорт
-importData("candidates2", jsonData)
+importData(collectionName, jsonData)
   .then(() => process.exit())
   .catch((error) => {
     console.error("Помилка імпорту:", error);
@@ -36,4 +39,3 @@ importData("candidates2", jsonData)
 // якщо повторно запустити імпорт, то дані в колекцію додадуться з файла, а не перезапишуть колекцію
 
 // якщо колекція з таким ім'ям не існує, то її буде створено
-// importData("your-name-colelection", jsonData)

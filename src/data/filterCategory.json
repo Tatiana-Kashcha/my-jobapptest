@@ -1,0 +1,9 @@
+[
+  { "id": "1", "name": "JavaScript / Frontend" },
+  { "id": "2", "name": "Python" },
+  { "id": "3", "name": "Node.js" },
+  { "id": "4", "name": "Java" },
+  { "id": "5", "name": "PHP" },
+  { "id": "6", "name": "Designer/UI/UX" },
+  { "id": "7", "name": "Golang" }
+]
