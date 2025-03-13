@@ -1,9 +1,9 @@
 import admin from "./src/utils/firebaseAdmin.js"; // Підключаємо Firestore Admin SDK
 import fs from "fs";
 
-const filePath = "./src/data/salary.json";
+const filePath = "./src/data/globalCategory.json";
 // candidates.json, filterCategory.json, globalCategory.json, skills.json, salary.json
-const collectionName = "salary";
+const collectionName = "global_category";
 // candidates, filter_category, global_category, skills, salary
 
 // Читаємо JSON-файл із даними
