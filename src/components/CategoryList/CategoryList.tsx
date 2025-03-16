@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { db } from "../../firebase/firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
 
-// import { globalCategoryArr } from "../../data/globalCategoryArr";
+import { SpinIconComponent } from "../SpinIconsComponent/SpinIconComponent";
 import styles from "./CategoryList.module.css";
 
 type CategoryItems = {
@@ -43,9 +43,13 @@ export const CategoryList = () => {
     </ul>
   ) : (
     <div className={styles.divLoading}>
-      <p>Loading data...</p>
+      <SpinIconComponent />
+      <p className={styles.pLoading}>Loading data...</p>
     </div>
   );
+
+  // варіант з проектними даними
+  // import { globalCategoryArr } from "../../data/globalCategoryArr";
 
   // return (
   //   <ul className={styles.list}>
