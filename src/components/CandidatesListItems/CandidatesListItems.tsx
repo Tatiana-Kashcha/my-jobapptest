@@ -3,6 +3,7 @@ import { CandidatesAdditionalInformation } from "../CandidatesAdditionalInformat
 import styles from "./CandidatesListItems.module.css";
 
 type Candidate = {
+  id: string;
   name: string;
   avatar: string;
   price: string;

@@ -19,9 +19,6 @@ export const FilterBox = () => {
   const [categoryAll, setCategoryAll] = useState<Buttons[]>([]);
   const [salaryAll, setSalaryAll] = useState<Buttons[]>([]);
 
-  console.log(categoryAll);
-  console.log(salaryAll);
-
   const getFilterCategory = async () => {
     try {
       const querySnapshot = await getDocs(collection(db, "filter_category"));

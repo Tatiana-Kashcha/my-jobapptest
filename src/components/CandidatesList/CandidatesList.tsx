@@ -4,10 +4,15 @@ import { parseQueryString } from "../../utils/parseQueryString";
 
 import decorations from "../../icons/decorations.svg";
 import { CandidatesListItems } from "../CandidatesListItems/CandidatesListItems";
-import { candidatesArr } from "../../data/candidatesArr";
+
+import { db } from "../../firebase/firebaseConfig";
+import { collection, getDocs } from "firebase/firestore";
+
+import { SpinIconComponent } from "../SpinIconsComponent/SpinIconComponent";
 import styles from "./CandidatesList.module.css";
 
-type CandidateItems = {
+type Candidate = {
+  id: string;
   name: string;
   avatar: string;
   price: string;
@@ -18,11 +23,35 @@ type CandidateItems = {
   description: string;
 };
 
+type CandidateItems = Omit<Candidate, "id">;
+
 export const CandidatesList = () => {
-  const [searchCandidateArr, setSearchCandidateArr] = useState<
-    CandidateItems[]
-  >([]);
+  const [searchCandidateArr, setSearchCandidateArr] = useState<Candidate[]>([]);
+  const [candidatesAll, setCandidatesAll] = useState<Candidate[]>([]);
+
   const location = useLocation();
+
+  const getCandidatesAll = async () => {
+    try {
+      const querySnapshot = await getDocs(collection(db, "candidates"));
+      const allCandidates = querySnapshot.docs.map((candidate) => ({
+        id: candidate.id,
+        ...(candidate.data() as CandidateItems),
+      }));
+
+      const allCandidatesSort = allCandidates?.sort((a, b) =>
+        a.name.localeCompare(b.name)
+      );
+
+      setCandidatesAll(allCandidatesSort);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getCandidatesAll();
+  }, []);
 
   const queryParams = useMemo(() => {
     return parseQueryString(location.search) as Record<string, string[]>;
@@ -35,7 +64,7 @@ export const CandidatesList = () => {
 
   const searchCandidate = () => {
     const searchNormalised = querySearchPosition?.toLowerCase();
-    return candidatesArr.filter((candidate) => {
+    return candidatesAll.filter((candidate) => {
       const candidatePosition = candidate.name
         ?.toLowerCase()
         .includes(searchNormalised);
@@ -63,9 +92,11 @@ export const CandidatesList = () => {
   };
 
   useEffect(() => {
-    const searchArr = searchCandidate();
-    setSearchCandidateArr(searchArr);
-  }, [queryParams]);
+    if (candidatesAll.length) {
+      const searchArr = searchCandidate();
+      setSearchCandidateArr(searchArr);
+    }
+  }, [queryParams, candidatesAll]);
 
   return (
     <div className={styles.candidates_div}>
@@ -73,18 +104,27 @@ export const CandidatesList = () => {
         <h1 className={styles.title}>
           Candidates <img src={decorations} alt="decorations text" />
         </h1>
-        <p className={styles.quantyti}>{searchCandidateArr.length}</p>
+        {candidatesAll.length > 0 && (
+          <p className={styles.quantyti}>{searchCandidateArr.length}</p>
+        )}
       </div>
-      <ul className={styles.list}>
-        {searchCandidateArr.map((item: CandidateItems, idx: number) => (
-          <li key={idx}>
-            <CandidatesListItems
-              candidate={item}
-              querySkillsArray={querySkillsArray}
-            />
-          </li>
-        ))}
-      </ul>
+      {candidatesAll.length ? (
+        <ul className={styles.list}>
+          {searchCandidateArr.map((item) => (
+            <li key={item.id}>
+              <CandidatesListItems
+                candidate={item}
+                querySkillsArray={querySkillsArray}
+              />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <div className={styles.divLoading}>
+          <SpinIconComponent />
+          <p className={styles.pLoading}>Loading data...</p>
+        </div>
+      )}
     </div>
   );
 };
