@@ -44,3 +44,21 @@
     background-color: #02BFF3;
    
 }
+
+.divLoading {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
+    margin-bottom: 60px;
+}
+
+.pLoading {
+    font-size: 16px;
+    font-weight: 500;
+    font-family: Roboto, sans-serif;
+    line-height: 1.1;
+
+    color: #828488;
+    padding: 15px 0;
+}

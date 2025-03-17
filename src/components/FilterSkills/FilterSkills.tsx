@@ -3,14 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import qs from "qs";
 import { parseQueryString } from "../../utils/parseQueryString";
-// import { skillsArr } from "../../data/skillsArr";
 import { SkillsCheckboxList } from "../SkillsCheckboxList/SkillsCheckboxList";
 
 import { db } from "../../firebase/firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
 
 import { SpinIconComponent } from "../SpinIconsComponent/SpinIconComponent";
-
 import styles from "./FilterSkills.module.css";
 
 type Skills = {

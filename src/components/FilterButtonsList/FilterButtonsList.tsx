@@ -2,11 +2,17 @@ import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import qs from "qs";
 import { parseQueryString } from "../../utils/parseQueryString";
+import { SpinIconComponent } from "../SpinIconsComponent/SpinIconComponent";
 import styles from "./FilterButtonsList.module.css";
+
+type DataArrItems = {
+  id: string;
+  name: string;
+};
 
 type FilterButtonsListProps = {
   title: string;
-  dataArr: string[];
+  dataArr: DataArrItems[];
 };
 
 export const FilterButtonsList = ({
@@ -50,25 +56,32 @@ export const FilterButtonsList = ({
   return (
     <div>
       <h2 className={styles.title}>{title}</h2>
-      <ul className={styles.list}>
-        {dataArr.map((item: string, idx: number) => (
-          <li key={idx} className={styles.list_items}>
-            <button
-              type="button"
-              className={`${styles.button} ${
-                queryButtonsArray?.includes(item)
-                  ? styles.selected
-                  : styles.no_selected
-              }`}
-              onClick={() => {
-                handleButtonChange(item);
-              }}
-            >
-              {item}
-            </button>
-          </li>
-        ))}
-      </ul>
+      {dataArr.length ? (
+        <ul className={styles.list}>
+          {dataArr.map((item) => (
+            <li key={item.id} className={styles.list_items}>
+              <button
+                type="button"
+                className={`${styles.button} ${
+                  queryButtonsArray?.includes(item.name)
+                    ? styles.selected
+                    : styles.no_selected
+                }`}
+                onClick={() => {
+                  handleButtonChange(item.name);
+                }}
+              >
+                {item.name}
+              </button>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <div className={styles.divLoading}>
+          <SpinIconComponent />
+          <p className={styles.pLoading}>Loading data...</p>
+        </div>
+      )}
     </div>
   );
 };

@@ -21,7 +21,11 @@ export const CategoryList = () => {
         name: category.data().name as string,
       }));
 
-      setGlobalCategory(allCategory);
+      const allCategorySort = allCategory?.sort((a, b) =>
+        a.name.localeCompare(b.name)
+      );
+
+      setGlobalCategory(allCategorySort);
     } catch (error) {
       console.log(error);
     }

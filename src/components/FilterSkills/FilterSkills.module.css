@@ -24,6 +24,8 @@
     display: flex;
     justify-content: center;
     align-content: center;
+
+    margin-bottom: 60px;
 }
 
 .pLoading {
