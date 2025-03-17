@@ -1,13 +1,44 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import qs from "qs";
 import { parseQueryString } from "../../utils/parseQueryString";
-import { skillsArr } from "../../data/skillsArr";
+// import { skillsArr } from "../../data/skillsArr";
 import { SkillsCheckboxList } from "../SkillsCheckboxList/SkillsCheckboxList";
+
+import { db } from "../../firebase/firebaseConfig";
+import { collection, getDocs } from "firebase/firestore";
+
+import { SpinIconComponent } from "../SpinIconsComponent/SpinIconComponent";
+
 import styles from "./FilterSkills.module.css";
 
+type Skills = {
+  id: string;
+  name: string;
+};
+
 export const FilterSkills = () => {
+  const [skillsArr, setSkillsArr] = useState<Skills[]>([]);
+
+  const getSkillsAll = async () => {
+    try {
+      const querySnapshot = await getDocs(collection(db, "skills"));
+      const allSkills = querySnapshot.docs.map((skill) => ({
+        id: skill.id,
+        name: skill.data().name as string,
+      }));
+
+      setSkillsArr(allSkills);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getSkillsAll();
+  }, []);
+
   const [inputValueSearch, setInputValueSearch] = useState<string>("");
   const navigate = useNavigate();
   const location = useLocation();
@@ -68,11 +99,18 @@ export const FilterSkills = () => {
         value={inputValueSearch}
         onChange={handleInputChange}
       />
-      <SkillsCheckboxList
-        searchSkillsArr={searchSkillsArr}
-        handleCheckboxChange={handleCheckboxChange}
-        querySkillsArray={querySkillsArray}
-      />
+      {skillsArr.length ? (
+        <SkillsCheckboxList
+          searchSkillsArr={searchSkillsArr}
+          handleCheckboxChange={handleCheckboxChange}
+          querySkillsArray={querySkillsArray}
+        />
+      ) : (
+        <div className={styles.divLoading}>
+          <SpinIconComponent />
+          <p className={styles.pLoading}>Loading data...</p>
+        </div>
+      )}
     </div>
   );
 };
